@@ -1,12 +1,29 @@
 import React from 'react';
 import axios from 'axios';
+import LaunchListTableHeader from './launch-list-table-header';
 
 class LaunchList extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			items: []
+			items: [],
+			selected_fields: {},
 		}
+		this.onChangeFieldsSelected = this.onChangeFieldsSelected.bind(this);
+	}
+
+	computedFields() {
+		return this.state.items.filter(obj => {
+			return obj.launch_success === this.state.selected_fields.launch_success;
+		})
+	}
+
+	onChangeFieldsSelected(selectedSuccess) {
+		this.setState({
+			selected_fields: {
+				launch_success: selectedSuccess
+			}
+		}, () => console.log(this.state))
 	}
 
 	// GET request to the spacexdata api, grab out all the required data and store
@@ -23,7 +40,7 @@ class LaunchList extends React.Component {
 					singleLaunch['launch_site_name'] = obj.launch_site.site_name_long;
 					singleLaunch['payload_mass_kg'] = obj.rocket.second_stage.payloads[0].payload_mass_kg;
 					singleLaunch['launch_success'] = obj.launch_success.toString();
-					launches.push(singleLaunch);
+					launches = [...launches, singleLaunch];
 				})
 				this.setState({"items": launches});
 			})
@@ -35,17 +52,11 @@ class LaunchList extends React.Component {
 	render() {
 		return (
 			<table>
-				<thead>
-					<tr>
-						<th> Launch Year </th>
-						<th> Mission Name </th>
-						<th> Launch Site </th>
-						<th> Payload Mass (kg) </th>
-						<th> Launch Success </th>
-					</tr>
-				</thead>
+				<LaunchListTableHeader
+					fields={this.state.items}
+					onChangeFieldsSelected={this.onChangeFieldsSelected}/>
 				<tbody>
-					{this.state.items.map((obj, index) => (
+					{this.computedFields().map((obj, index) => (
 						<tr key={index}>
 							<td> {obj.launch_year} </td>
 							<td> {obj.mission_name} </td>

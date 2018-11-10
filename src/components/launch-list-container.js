@@ -9,7 +9,8 @@ class LaunchListContainer extends React.Component {
 				"border": "dotted black",
 				"borderWidth": "1px",
 				"borderRadius": "7px",
-				"height": "750px",
+				"marginTop": "5%",
+				"height": "650px",
 				"width": "100%",
 				"overflowY": "scroll",
 				}}>

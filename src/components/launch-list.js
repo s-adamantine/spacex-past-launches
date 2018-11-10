@@ -7,15 +7,27 @@ class LaunchList extends React.Component {
 		super();
 		this.state = {
 			items: [],
-			selected_fields: {},
+			selected_fields: {
+				launch_year: '-',
+				land_success: '-',
+			},
 		}
 		this.onChangeFieldsSelected = this.onChangeFieldsSelected.bind(this);
 	}
 
-	computedFields() {
+	computedFields(selected_fields) {
 		return this.state.items.filter(obj => {
-			return (obj.land_success === this.state.selected_fields.land_success
-				&& obj.launch_year === this.state.selected_fields.launch_year)
+			if (selected_fields.land_success === '-'
+				&& selected_fields.launch_year === '-') {
+					return obj;
+			} else if (selected_fields.land_success === '-') {
+				return obj.launch_year === selected_fields.launch_year;
+			} else if (selected_fields.launch_year === '-') {
+				return obj.land_success === selected_fields.land_success;
+			} else {
+				return (obj.land_success === selected_fields.land_success
+					&& obj.launch_year === selected_fields.launch_year)
+			}
 		})
 	}
 
@@ -58,7 +70,7 @@ class LaunchList extends React.Component {
 					fields={this.state.items}
 					onChangeFieldsSelected={this.onChangeFieldsSelected}/>
 				<tbody>
-					{this.computedFields().map((obj, index) => (
+					{this.computedFields(this.state.selected_fields).map((obj, index) => (
 						<tr key={index}>
 							<td> {obj.launch_year} </td>
 							<td> {obj.mission_name} </td>

@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 class LaunchListTableHeader extends Component {
 	constructor(props) {
 		super();
-		this.state = {};
+		this.state = {
+			launch_year: '-',
+			land_success: '-',
+		};
 		this.selectedYear = this.selectedYear.bind(this);
 		this.selectedSuccess = this.selectedSuccess.bind(this)
 	}

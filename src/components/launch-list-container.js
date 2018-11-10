@@ -7,8 +7,13 @@ class LaunchListContainer extends React.Component {
 	constructor(){
 		super();
 		this.state = {
-			items: []
+			items: [],
+			selected_fields: {
+				launch_year: '-',
+				land_success: '-',
+			},
 		};
+		this.onChangeFieldsSelected = this.onChangeFieldsSelected.bind(this);
 	}
 
 	// GET request to the spacexdata api, grab out all the required data and store
@@ -34,6 +39,31 @@ class LaunchListContainer extends React.Component {
 			})
 	}
 
+	onChangeFieldsSelected(selectedFields) {
+		this.setState({
+			selected_fields: {
+				launch_year: selectedFields.launch_year,
+				land_success: selectedFields.land_success,
+			}
+		}, () => console.log(this.state))
+	}
+
+	computedFields(selected_fields) {
+		return this.state.items.filter(obj => {
+			if (selected_fields.land_success === '-'
+				&& selected_fields.launch_year === '-') {
+					return obj;
+			} else if (selected_fields.land_success === '-') {
+				return obj.launch_year === selected_fields.launch_year;
+			} else if (selected_fields.launch_year === '-') {
+				return obj.land_success === selected_fields.land_success;
+			} else {
+				return (obj.land_success === selected_fields.land_success
+					&& obj.launch_year === selected_fields.launch_year)
+			}
+		})
+	}
+
 	render() {
 		return (
 			<div style={{
@@ -45,8 +75,10 @@ class LaunchListContainer extends React.Component {
 				"width": "100%",
 				"overflowY": "scroll",
 				}}>
-					<LaunchListFilters fields={this.state.items}/>
-					<LaunchList items={this.state.items}/>
+					<LaunchListFilters
+						fields={this.state.items}
+						onChangeFieldsSelected={this.onChangeFieldsSelected}/>
+					<LaunchList selectedItems={this.computedFields(this.state.selected_fields)}/>
 				</div>
 		);
 	}

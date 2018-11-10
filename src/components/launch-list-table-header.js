@@ -14,12 +14,6 @@ class LaunchListTableHeader extends Component {
 		})
 	}
 
-	filterYears(e) {
-		if (this.state.launch_success === 'true') {
-			// show only the true options.
-		}
-	}
-
 	selectedSuccess(e) {
 		this.setState({
 			"launch_success": e.target.value,
@@ -30,7 +24,6 @@ class LaunchListTableHeader extends Component {
 
 	render() {
 		var launch_years = [...new Set(this.props.fields.map(item => item.launch_year))];
-		console.log(launch_years);
 		return (
 			<thead>
 				<tr>

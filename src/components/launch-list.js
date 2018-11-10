@@ -14,14 +14,14 @@ class LaunchList extends React.Component {
 
 	computedFields() {
 		return this.state.items.filter(obj => {
-			return obj.launch_success === this.state.selected_fields.launch_success;
+			return obj.land_success === this.state.selected_fields.land_success;
 		})
 	}
 
 	onChangeFieldsSelected(selectedSuccess) {
 		this.setState({
 			selected_fields: {
-				launch_success: selectedSuccess
+				land_success: selectedSuccess
 			}
 		}, () => console.log(this.state))
 	}
@@ -39,7 +39,7 @@ class LaunchList extends React.Component {
 					singleLaunch['mission_name'] = obj.mission_name;
 					singleLaunch['launch_site_name'] = obj.launch_site.site_name_long;
 					singleLaunch['payload_mass_kg'] = obj.rocket.second_stage.payloads[0].payload_mass_kg;
-					singleLaunch['launch_success'] = obj.launch_success.toString();
+					singleLaunch['land_success'] = String(obj.rocket.first_stage.cores[0].land_success);
 					launches = [...launches, singleLaunch];
 				})
 				this.setState({"items": launches});
@@ -62,7 +62,7 @@ class LaunchList extends React.Component {
 							<td> {obj.mission_name} </td>
 							<td> {obj.launch_site_name} </td>
 							<td> {obj.payload_mass_kg} </td>
-							<td> {obj.launch_success} </td>
+							<td> {obj.land_success} </td>
 						</tr>
 					))}
 				</tbody>

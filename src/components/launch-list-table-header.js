@@ -16,9 +16,9 @@ class LaunchListTableHeader extends Component {
 
 	selectedSuccess(e) {
 		this.setState({
-			"launch_success": e.target.value,
+			"land_success": e.target.value,
 		}, () => {
-			this.props.onChangeFieldsSelected(this.state.launch_success);
+			this.props.onChangeFieldsSelected(this.state.land_success);
 		})
 	}
 
@@ -44,10 +44,11 @@ class LaunchListTableHeader extends Component {
 					</th>
 					<th> Launch Site </th>
 					<th> Payload Mass (kg) </th>
-					<th> Launch Success
+					<th> Land Success
 						<div>
 							<select onChange={this.selectedSuccess}>
 								<option defaultValue value="-"> - </option>
+								<option value="null"> null </option>
 								<option value="true"> true </option>
 								<option value="false"> false </option>
 							</select>

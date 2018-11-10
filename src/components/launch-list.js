@@ -42,9 +42,7 @@ class LaunchList extends React.Component {
 	render() {
 		return (
 			<table>
-				<LaunchListTableHeader
-					fields={this.props.items}
-					onChangeFieldsSelected={this.onChangeFieldsSelected}/>
+				<LaunchListTableHeader/>
 				<tbody>
 					{this.computedFields(this.state.selected_fields).map((obj, index) => (
 						<tr key={index}>

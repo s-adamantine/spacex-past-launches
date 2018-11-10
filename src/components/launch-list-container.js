@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import LaunchList from './launch-list';
+import LaunchListFilters from './launch-list-filters';
 
 class LaunchListContainer extends React.Component {
 	constructor(){
@@ -44,6 +45,7 @@ class LaunchListContainer extends React.Component {
 				"width": "100%",
 				"overflowY": "scroll",
 				}}>
+					<LaunchListFilters fields={this.state.items}/>
 					<LaunchList items={this.state.items}/>
 				</div>
 		);

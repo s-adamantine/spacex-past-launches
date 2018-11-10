@@ -14,14 +14,16 @@ class LaunchList extends React.Component {
 
 	computedFields() {
 		return this.state.items.filter(obj => {
-			return obj.land_success === this.state.selected_fields.land_success;
+			return (obj.land_success === this.state.selected_fields.land_success
+				&& obj.launch_year === this.state.selected_fields.launch_year)
 		})
 	}
 
-	onChangeFieldsSelected(selectedSuccess) {
+	onChangeFieldsSelected(selectedFields) {
 		this.setState({
 			selected_fields: {
-				land_success: selectedSuccess
+				launch_year: selectedFields.launch_year,
+				land_success: selectedFields.land_success,
 			}
 		}, () => console.log(this.state))
 	}

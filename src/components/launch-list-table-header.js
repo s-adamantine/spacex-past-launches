@@ -10,7 +10,9 @@ class LaunchListTableHeader extends Component {
 
 	selectedYear(e) {
 		this.setState({
-			"selected_year": e.target.value,
+			"launch_year": e.target.value,
+		}, () => {
+			this.props.onChangeFieldsSelected(this.state);
 		})
 	}
 
@@ -18,7 +20,7 @@ class LaunchListTableHeader extends Component {
 		this.setState({
 			"land_success": e.target.value,
 		}, () => {
-			this.props.onChangeFieldsSelected(this.state.land_success);
+			this.props.onChangeFieldsSelected(this.state);
 		})
 	}
 

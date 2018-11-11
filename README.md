@@ -1,4 +1,4 @@
-#SpaceX Past Launches
+## SpaceX Past Launches
 ```
 npm start
 ```

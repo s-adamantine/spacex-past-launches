@@ -1,0 +1,13 @@
+.table-container {
+	border: dotted black;
+	border-width: 1px;
+	border-radius: 7px;
+	margin-top: 1%;
+	height: 650px;
+	width: 100%;
+	overflow-y: scroll;
+}
+
+.filters {
+	margin-top: 2%
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 
 class AveragePayload extends Component {
 	constructor(props){
@@ -15,9 +16,10 @@ class AveragePayload extends Component {
 			}, 0)
 		var average = Math.round(sum / this.props.selectedItems.length)
 		return (
-			<span>
-				Average Payload:
-				{average}
+			<span style={{
+				"float": "right"
+			}}>
+				Average Payload: <Button>{average} kg</Button>
 			</span>
 		);
 	}

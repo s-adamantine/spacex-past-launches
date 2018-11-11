@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 class LaunchListFilters extends Component {
 	constructor(props) {
@@ -11,17 +12,17 @@ class LaunchListFilters extends Component {
 		this.selectedSuccess = this.selectedSuccess.bind(this)
 	}
 
-	selectedYear(e) {
+	selectedYear(selected) {
 		this.setState({
-			"launch_year": e.target.value,
+			"launch_year": selected
 		}, () => {
 			this.props.onChangeFieldsSelected(this.state);
 		})
 	}
 
-	selectedSuccess(e) {
+	selectedSuccess(selected) {
 		this.setState({
-			"land_success": e.target.value,
+			"land_success": selected,
 		}, () => {
 			this.props.onChangeFieldsSelected(this.state);
 		})
@@ -33,22 +34,36 @@ class LaunchListFilters extends Component {
 		var landing_successes = [...new Set(this.props.fields.map(item => item.land_success))];
 
 		return (
-			<div>
-				Filter by:
-				<select onChange={this.selectedYear}>
-					<option defaultValue="-" value="-"> Launch Year </option>
-					{launch_years.map((year, index) => (
-						<option key={index} value={year}>{year}</option>
-					))
-					}
-				</select>
-				<select onChange={this.selectedSuccess}>
-					<option defaultValue value="-"> Landing Success </option>
-					{landing_successes.map((value, index) => (
-						<option value={value}> {value} </option>
-					))}
-				</select>
-			</div>
+			<span>
+				<span className="filter-element">
+					Filter by
+				</span>
+				<span className="filter-element">
+					<DropdownButton
+						bsStyle="default"
+						title="Launch Year"
+						id="dropdown-size-large"
+						onSelect={this.selectedYear}>
+							<MenuItem defaultValue="-" eventKey="-"> - </MenuItem>
+							{launch_years.map((year, index) => (
+								<MenuItem key={index} eventKey={year}>{year}</MenuItem>
+							))
+							}
+					</DropdownButton>
+				</span>
+				<span className="filter-element">
+					<DropdownButton
+						bsStyle="default"
+						title="Landing Success"
+						id="dropdown-size-large"
+						onSelect={this.selectedSuccess}>
+						<MenuItem defaultValue="-" eventKey="-"> - </MenuItem>
+						{landing_successes.map((value, index) => (
+							<MenuItem key={index} eventKey={value}> {value} </MenuItem>
+						))}
+					</DropdownButton>
+				</span>
+			</span>
 		);
 	}
 

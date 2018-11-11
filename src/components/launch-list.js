@@ -1,4 +1,5 @@
 import React from 'react';
+import './launch-list.css'
 
 class LaunchList extends React.Component {
 	render() {

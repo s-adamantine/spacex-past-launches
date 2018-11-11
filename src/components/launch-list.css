@@ -9,5 +9,36 @@
 }
 
 .filters {
-	margin-top: 2%
+	margin-top: 2%;
+}
+
+.filter-element {
+	padding: 5px;
+}
+
+body {
+	background-color: #F4F8F9;
+}
+
+table {
+	background-color: white;
+}
+
+th {
+	background-color: #C3DAE4;
+	color: #2A2D34;
+}
+
+th, td {
+	padding: 4px;
+	padding-left: 10px;
+}
+
+tr:hover {
+	background-color: #F4F8F9;
+}
+
+span {
+	color: #2A2D34;
+	font-weight: bold;
 }

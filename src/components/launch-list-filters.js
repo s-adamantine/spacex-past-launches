@@ -28,7 +28,10 @@ class LaunchListFilters extends Component {
 	}
 
 	render() {
+		// Grab out all the possible filter values
 		var launch_years = [...new Set(this.props.fields.map(item => item.launch_year))];
+		var landing_successes = [...new Set(this.props.fields.map(item => item.land_success))];
+
 		return (
 			<div>
 				Filter by:
@@ -41,9 +44,9 @@ class LaunchListFilters extends Component {
 				</select>
 				<select onChange={this.selectedSuccess}>
 					<option defaultValue value="-"> Landing Success </option>
-					<option value="null"> null </option>
-					<option value="true"> true </option>
-					<option value="false"> false </option>
+					{landing_successes.map((value, index) => (
+						<option value={value}> {value} </option>
+					))}
 				</select>
 			</div>
 		);

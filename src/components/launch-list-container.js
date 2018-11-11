@@ -3,6 +3,7 @@ import axios from 'axios';
 import LaunchList from './launch-list';
 import LaunchListFilters from './launch-list-filters';
 import LaunchListTableHeader from './launch-list-table-header';
+import AveragePayload from './average-payload';
 import './launch-list.css';
 
 class LaunchListContainer extends React.Component {
@@ -73,6 +74,7 @@ class LaunchListContainer extends React.Component {
 					<LaunchListFilters
 						fields={this.state.items}
 						onChangeFieldsSelected={this.onChangeFieldsSelected}/>
+					<AveragePayload selectedItems={this.computedFields(this.state.selected_fields)}/>
 				</div>
 				<div className="table-container">
 					<table>

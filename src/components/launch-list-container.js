@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import LaunchList from './launch-list';
 import LaunchListFilters from './launch-list-filters';
+import LaunchListTableHeader from './launch-list-table-header';
 
 class LaunchListContainer extends React.Component {
 	constructor(){
@@ -45,7 +46,7 @@ class LaunchListContainer extends React.Component {
 				launch_year: selectedFields.launch_year,
 				land_success: selectedFields.land_success,
 			}
-		}, () => console.log(this.state))
+		})
 	}
 
 	computedFields(selected_fields) {
@@ -66,20 +67,43 @@ class LaunchListContainer extends React.Component {
 
 	render() {
 		return (
-			<div style={{
-				"border": "dotted black",
-				"borderWidth": "1px",
-				"borderRadius": "7px",
-				"marginTop": "5%",
-				"height": "650px",
-				"width": "100%",
-				"overflowY": "scroll",
+			<div>
+				<div style={{
+					"marginTop": "2%"
 				}}>
 					<LaunchListFilters
 						fields={this.state.items}
 						onChangeFieldsSelected={this.onChangeFieldsSelected}/>
-					<LaunchList selectedItems={this.computedFields(this.state.selected_fields)}/>
 				</div>
+				<div style={{
+					"border": "dotted black",
+					"borderWidth": "1px",
+					"borderRadius": "7px",
+					"marginTop": "1%",
+				}}>
+					<div style={{
+						"border": "black",
+						"borderWidth": "1px",
+						"borderRadius": "7px",
+						"marginTop": "5px",
+						"height": "650px",
+						"width": "100%",
+						"overflowY": "scroll",
+						}}>
+						<table>
+							<colgroup>
+								<col width="5%"></col>
+								<col width="25%"></col>
+								<col width="47.5%"></col>
+								<col width="12.5%"></col>
+								<col width="10%"></col>
+							</colgroup>
+							<LaunchListTableHeader />
+							<LaunchList selectedItems={this.computedFields(this.state.selected_fields)}/>
+						</table>
+						</div>
+				</div>
+			</div>
 		);
 	}
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './launch-list.css'
 
-class LaunchList extends React.Component {
+class LaunchListData extends React.Component {
 	render() {
 		return (
 			<tbody>
@@ -19,4 +19,4 @@ class LaunchList extends React.Component {
 	}
 }
 
-export default LaunchList;
+export default LaunchListData;

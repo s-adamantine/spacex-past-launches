@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import LaunchList from './launch-list';
-import LaunchListFilters from './launch-list-filters';
-import LaunchListTableHeader from './launch-list-table-header';
+import LaunchListData from './table-data';
+import LaunchListFilters from './filters';
+import LaunchListTableHeader from './table-header';
 import AveragePayload from './average-payload';
 import './launch-list.css';
 
@@ -86,7 +86,7 @@ class LaunchListContainer extends React.Component {
 							<col width="10%"></col>
 						</colgroup>
 						<LaunchListTableHeader />
-						<LaunchList selectedItems={this.computedFields(this.state.selected_fields)}/>
+						<LaunchListData selectedItems={this.computedFields(this.state.selected_fields)}/>
 					</table>
 				</div>
 			</div>

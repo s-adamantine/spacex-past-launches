@@ -14,7 +14,7 @@ class AveragePayload extends Component {
 			.reduce((sum, currentPayload) => {
 				return sum + currentPayload
 			}, 0)
-		var average = Math.round(sum / this.props.selectedItems.length)
+		var average = this.props.selectedItems.length === 0 ? 0 : Math.round(sum / this.props.selectedItems.length)
 		return (
 			<span style={{
 				"float": "right"

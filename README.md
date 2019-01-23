@@ -1,4 +1,7 @@
 ## SpaceX Past Launches
+
+This app is deployed on: https://space-x-launches.firebaseapp.com/
+
 ```
 npm i && npm start
 ```
